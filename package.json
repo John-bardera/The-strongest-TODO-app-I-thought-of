@@ -63,8 +63,10 @@
     "@ngrx/store": "^8.4.0",
     "cordova-ios": "5.0.1",
     "core-js": "^2.5.4",
+    "kind-of": "^6.0.3",
     "object-keys-normalizer": "^1.0.1",
     "rxjs": "~6.5.1",
+    "serialize-javascript": "^3.0.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
