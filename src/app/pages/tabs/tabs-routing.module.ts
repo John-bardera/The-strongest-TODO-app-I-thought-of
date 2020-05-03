@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TabsPage } from './tabs.page';
+import { TabsPage } from '@/pages/tabs/tabs.page';
 
 const routes: Routes = [
   {
@@ -15,6 +15,18 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
+      },
+      {
+        path: 'todays',
+        loadChildren: () => import('../todays/todays.module').then(m => m.TodaysPageModule),
+      },
+      {
+        path: 'reminder',
+        loadChildren: () => import('../reminder/reminder.module').then(m => m.ReminderPageModule),
+      },
+      {
+        path: 'setting',
+        loadChildren: () => import('../setting/setting.module').then(m => m.SettingPageModule),
       },
     ],
   },

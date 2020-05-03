@@ -6,8 +6,11 @@ const routes: Routes = [
     path: '',
     children: [
       { path: '', redirectTo: 'tabs', pathMatch: 'full' },
-      { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)},
-      { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)},
+      { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule) },
+      { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
+      { path: 'todays', loadChildren: () => import('./pages/todays/todays.module').then(m => m.TodaysPageModule) },
+      { path: 'reminder', loadChildren: () => import('./pages/reminder/reminder.module').then(m => m.ReminderPageModule) },
+      { path: 'setting', loadChildren: () => import('./pages/setting/setting.module').then(m => m.SettingPageModule) },
     ]
   },
 ];

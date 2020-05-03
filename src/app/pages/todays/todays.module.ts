@@ -1,23 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { HomePage } from '@/pages/home/home.page';
+import { TodaysPageRoutingModule } from '@/pages/todays/todays-routing.module';
+import { TodaysPage } from '@/pages/todays/todays.page';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
+    TodaysPageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [TodaysPage]
 })
-export class HomePageModule {}
+export class TodaysPageModule {}

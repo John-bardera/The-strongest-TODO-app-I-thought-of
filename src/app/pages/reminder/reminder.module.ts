@@ -1,23 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { HomePage } from '@/pages/home/home.page';
+import { RemindersPageRoutingModule } from '@/pages/reminder/reminder-routing.module';
+import { ReminderPage } from '@/pages/reminder/reminder.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
+    RemindersPageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [ReminderPage]
 })
-export class HomePageModule {}
+export class ReminderPageModule {}
