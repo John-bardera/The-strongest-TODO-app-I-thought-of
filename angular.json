@@ -81,9 +81,6 @@
                   "with": "src/environments/environment.dev.ts"
                 }
               ]
-            },
-            "ci": {
-              "progress": false
             }
           }
         },
@@ -199,16 +196,16 @@
           },
           "configurations": {
             "prod": {
-              "cordovaBuildTarget": "app:ionic-cordova-build:prod",
-              "devServerTarget": "app:serve:prod"
+              "browserTarget": "app:serve:prod"
             },
             "stg": {
-              "cordovaBuildTarget": "app:ionic-cordova-build:stg",
-              "devServerTarget": "app:serve:stg"
+              "browserTarget": "app:serve:stg"
             },
             "dev": {
-              "cordovaBuildTarget": "app:ionic-cordova-build:dev",
-              "devServerTarget": "app:serve:dev"
+              "browserTarget": "app:serve:dev"
+            },
+            "ci": {
+              "progress": false
             }
           }
         }

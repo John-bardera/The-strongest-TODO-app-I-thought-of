@@ -1,5 +1,11 @@
 {
   "extends": "tslint:recommended",
+  "linterOptions": {
+    "exclude": [
+      "./**/*.spec.ts",
+      "./src/polyfills.ts"
+    ]
+  },
   "rulesDirectory": [
     "codelyzer",
     "node_modules/rxjs-tslint"
@@ -33,14 +39,13 @@
       }
     ],
     "no-consecutive-blank-lines": false,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": {
+      "options": [
+        "debug",
+        "info",
+        "log"
+      ]
+    },
     "no-empty": false,
     "no-inferrable-types": [
       true,
@@ -55,20 +60,14 @@
       "as-needed"
     ],
     "object-literal-sort-keys": false,
-    "ordered-imports": false,
+    "ordered-imports": true,
     "quotemark": [
       true,
       "single"
     ],
     "trailing-comma": false,
-    "no-output-on-prefix": {
-      "option": true,
-      "severity": "warning"
-    },
-    "no-shadowed-variable": {
-      "option": false,
-      "severity": "warning"
-    },
+    "no-output-on-prefix": false,
+    "no-shadowed-variable": false,
     "variable-name": {
       "options": [
         "allow-leading-underscore"
@@ -82,7 +81,11 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "one-variable-per-declaration": false,
-    "component-class-suffix": [true, "Page", "Component"],
+    "component-class-suffix": [
+      true,
+      "Page",
+      "Component"
+    ],
     "directive-class-suffix": true,
     "indent": [
       true,
@@ -108,6 +111,34 @@
       true,
       "always",
       "ignore-bound-class-methods"
-    ]
+    ],
+    "ordered-imports": {
+      "options": {
+        "import-sources-order": "lowercase-last",
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "core packages",
+            "match": "^(@angular|@capacitor|@ionic\/|@ngrx|rxjs*)",
+            "order": 1
+          },
+          {
+            "name": "exnternal packages",
+            "match": "^(?!@\/|\\.|@environment).+$",
+            "order": 2
+          },
+          {
+            "name": "absolute path imports",
+            "match": "^(@environment|@\/).*$",
+            "order": 10
+          },
+          {
+            "name": "relational path imports",
+            "match": "^\\..+$",
+            "order": 11
+          }
+        ]
+      }
+    }
   }
 }
