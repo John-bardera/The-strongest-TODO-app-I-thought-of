@@ -9,7 +9,7 @@ const routes: Routes = [
       { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule) },
       { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule) },
       { path: 'todays', loadChildren: () => import('./pages/todays/todays.module').then(m => m.TodaysPageModule) },
-      { path: 'reminder', loadChildren: () => import('./pages/reminder/reminder.module').then(m => m.ReminderPageModule) },
+      { path: 'reminders', loadChildren: () => import('./pages/reminders/reminders.module').then(m => m.RemindersPageModule) },
       { path: 'setting', loadChildren: () => import('./pages/setting/setting.module').then(m => m.SettingPageModule) },
     ]
   },

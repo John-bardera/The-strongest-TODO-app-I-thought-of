@@ -21,8 +21,8 @@ const routes: Routes = [
         loadChildren: () => import('../todays/todays.module').then(m => m.TodaysPageModule),
       },
       {
-        path: 'reminder',
-        loadChildren: () => import('../reminder/reminder.module').then(m => m.ReminderPageModule),
+        path: 'reminders',
+        loadChildren: () => import('../reminders/reminders.module').then(m => m.RemindersPageModule),
       },
       {
         path: 'setting',

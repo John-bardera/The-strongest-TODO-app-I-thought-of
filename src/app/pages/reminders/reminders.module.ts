@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-import { RemindersPageRoutingModule } from '@/pages/reminder/reminder-routing.module';
-import { ReminderPage } from '@/pages/reminder/reminder.page';
+import { RemindersPageRoutingModule } from '@/pages/reminders/reminders-routing.module';
+import { RemindersPage } from '@/pages/reminders/reminders.page';
 
 @NgModule({
   imports: [
@@ -13,6 +13,6 @@ import { ReminderPage } from '@/pages/reminder/reminder.page';
     IonicModule,
     RemindersPageRoutingModule,
   ],
-  declarations: [ReminderPage]
+  declarations: [RemindersPage]
 })
-export class ReminderPageModule {}
+export class RemindersPageModule {}

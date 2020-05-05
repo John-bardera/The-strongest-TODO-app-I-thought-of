@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReminderPage } from '@/pages/reminder/reminder.page';
+import { RemindersPage } from '@/pages/reminders/reminders.page';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ReminderPage,
+    component: RemindersPage,
     children: [
       {
         path: '',
-        redirectTo: 'reminder',
+        redirectTo: 'reminders',
       },
     ],
   },
