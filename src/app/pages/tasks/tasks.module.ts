@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { TasksPageRoutingModule } from '@/pages/tasks/tasks-routing.module';
 import { TasksPage } from '@/pages/tasks/tasks.page';
+import { ComponentsModule } from '@/components/components.module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { TasksPage } from '@/pages/tasks/tasks.page';
     FormsModule,
     IonicModule,
     TasksPageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [TasksPage]
 })
