@@ -10,15 +10,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
-      },
-      {
-        path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
+        redirectTo: 'tasks',
       },
       {
         path: 'todays',
         loadChildren: () => import('../todays/todays.module').then(m => m.TodaysPageModule),
+      },
+      {
+        path: 'tasks',
+        loadChildren: () => import('../tasks/tasks.module').then(m => m.TasksPageModule),
       },
       {
         path: 'reminders',
