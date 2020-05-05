@@ -16,14 +16,15 @@
     "ionic:build:ios": "ionic cordova build ios --engine=cordova",
     "ionic:build:android": "ionic cordova build android --engine=cordova",
     "test": "ng test",
-    "lint": "npm run nglint && npm run sass-lint",
+    "lint": "npm run nglint && npm run sass-lint && npm run stylelint",
     "e2e": "ng e2e",
     "nglint": "tslint -c ./tslint.json -p ./tsconfig.json 'src/**/*.ts' --format stylish",
     "format:ts": "prettier --write 'src/**/*.ts'",
     "format:html": "prettier --write 'src/**/*.html' --parser angular",
     "format": "npm run format:ts && npm run format:html",
     "sass-lint": "sass-lint -v",
-    "sass-lint:fix": "sass-lint -c .sass-lint.yml -v -q"
+    "sass-lint:fix": "sass-lint -c .sass-lint.yml -v -q && npm run stylelint -- --fix",
+    "stylelint": "npx stylelint src/**/*.scss --syntax scss"
   },
   "lint-staged": {
     "*.ts": [
@@ -103,6 +104,11 @@
     "protractor": "^5.4.4",
     "rxjs-tslint": "^0.1.8",
     "sass-lint": "git+https://github.com/justinanastos/sass-lint.git#fix/1224/property-sort-order-throwing-css-variables",
+    "stylelint": "^13.3.3",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-scss": "^3.17.1",
     "ts-node": "~7.0.0",
     "tslint": "^5.20.1",
     "tslint-eslint-rules": "^5.4.0",
