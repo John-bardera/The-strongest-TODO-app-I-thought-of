@@ -80,9 +80,29 @@ button {
     --padding-start: 32px;
     --padding-end: 32px;
     --background: var(--app-color-bg);
+    --color: var(--app-color-text-blue);
+    color: var(--app-color-text-blue);
   }
 }
 
 ion-content {
   --background: var(--app-color-bg);
+  --color: var(--app-color-text-blue);
+  color: var(--app-color-text-blue);
+}
+ion-toolbar {
+  --background: var(--app-color-primary);
+  --color: var(--app-color-text-white);
+  color: var(--app-color-text-white);
+}
+ion-tab-bar {
+  --background: var(--app-color-primary);
+  --color: var(--app-color-text-white);
+  border: none;
+  color: var(--app-color-text-white);
+  overflow: hidden;
+}
+
+ion-icon {
+  color: var(--app-color-text-white);
 }

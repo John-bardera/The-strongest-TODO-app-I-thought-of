@@ -1,3 +1,30 @@
 ion-tab-button {
-  --color-selected: var(--app-color-primary);
+  --background-focused: var(--app-color-bg);
+  --ripple-color: var(--app-color-bg);
+  --color-selected: var(--app-color-text-white);
+  &.tab-selected {
+    --color-selected: var(--app-color-text-blue);
+    ion-icon {
+      color: var(--app-color-text-blue);
+    }
+  }
+  ion-icon,
+  ion-label {
+    z-index: 2;
+  }
+  .selected-background {
+    $size: 168px;
+    background-color: var(--app-color-bg);
+    border-radius: 50%;
+    display: none;
+    height: 25vw;
+    max-height: $size;
+    max-width: $size;
+    position: absolute;
+    width: 25vw;
+    z-index: 1;
+    &.is-selected {
+      display: block;
+    }
+  }
 }
