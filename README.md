@@ -8,9 +8,23 @@
 これで動かんかったら教えてくれ。
 
 ## サーバ起動
-`ionic run ionic:serve:${environment}`
+- `npm run ionic:serve:${environment}`
 
-environmentはdev, stg, prodの3種類
+environmentはdev, stg, prodの3種類。
+
+まぁ、今はサーバとか存在しないのでどれ選んでも一緒。
+
+## 実機ビルド
+- `npm run ionic:build:${environment}`
+- `npx cap copy`
+- `npx cap open ios(またはandroid)`
+
+初回だけ下を実行する必要があるので注意。
+
+### 初回時
+- `npx cap add ios(またはandroid)`
+- `npx cap sync`
+- `npx cap copy`
 
 ## その他共有事項
 適宜追加して行く。
