@@ -85,8 +85,13 @@ button {
   }
 }
 
+$padding-size: 24px;
 ion-content {
   --background: var(--app-color-bg);
+  --padding-top: $padding-size;
+  --padding-bottom: $padding-size;
+  --padding-start: $padding-size;
+  --padding-end: $padding-size;
   --color: var(--app-color-text-blue);
   color: var(--app-color-text-blue);
 }
