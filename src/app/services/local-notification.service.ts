@@ -3,20 +3,23 @@ import { Plugins } from '@capacitor/core';
 const { LocalNotifications } = Plugins;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalNotificationService {
   // TODO: android用にcapacitor.config.jsonを修正(通知のアイコンとかの設定)
   // TODO: 繋ぎこみ(https://capacitor.ionicframework.com/docs/apis/local-notifications/)
-  constructor() { }
+  constructor() {}
 
   requestPermission() {
-    LocalNotifications.requestPermission().then(async _ => {
-      console.log(_);
-      await this.sendNotification();
-    }, error => {
-      console.log(error);
-    });
+    LocalNotifications.requestPermission().then(
+      async (_) => {
+        console.log(_);
+        await this.sendNotification();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   async sendNotification() {
@@ -30,9 +33,9 @@ export class LocalNotificationService {
           sound: null,
           attachments: null,
           actionTypeId: '',
-          extra: null
-        }
-      ]
+          extra: null,
+        },
+      ],
     });
   }
 }

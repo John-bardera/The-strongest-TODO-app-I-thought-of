@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RemindersPage } from '@/pages/reminders/reminders.page';
 
-
 const routes: Routes = [
   {
     path: '',

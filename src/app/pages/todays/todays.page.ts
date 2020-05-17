@@ -9,13 +9,9 @@ import { TaskDetailComponent } from '@/components/task-detail/task-detail.compon
   styleUrls: ['./todays.page.scss'],
 })
 export class TodaysPage implements OnInit {
+  constructor(private modalCtrl: ModalController) {}
 
-  constructor(
-    private modalCtrl: ModalController,
-  ) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   async pushTaskDetail() {
     const modal = await this.modalCtrl.create({

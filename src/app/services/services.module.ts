@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { LocalNotificationService } from '@/services/local-notification.service';
 
-
 @NgModule({
   providers: [
     // HogeService,
     LocalNotificationService,
   ],
 })
-
 export class ServicesModule {}

@@ -1,4 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
+
 import * as fromJwtToken from './jwt-token.store';
 
 export interface AppState {

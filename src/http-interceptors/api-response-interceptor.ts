@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {normalizeKeys} from 'object-keys-normalizer';
-import {environment} from '@environment';
+import { Injectable } from '@angular/core';
+import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { normalizeKeys } from 'object-keys-normalizer';
+import { environment } from '@environment';
 
 @Injectable()
 export class ApiResponseInterceptor implements HttpInterceptor {
@@ -10,7 +10,7 @@ export class ApiResponseInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(req).pipe(
-      map(event => {
+      map((event) => {
         const e = event as HttpResponse<any>;
         if (!req.headers.has('x-meta-respect-original-key-name') && this.shouldNormalize(e.url) && e.body) {
           const body = normalizeKeys(e.body, 'camel');
@@ -26,7 +26,7 @@ export class ApiResponseInterceptor implements HttpInterceptor {
       return false;
     }
     return environment.api.host === 'localhost'
-        ? url.includes(`${environment.api.host}:${environment.api.port}`)
-        : url.includes(environment.api.host);
+      ? url.includes(`${environment.api.host}:${environment.api.port}`)
+      : url.includes(environment.api.host);
   }
 }

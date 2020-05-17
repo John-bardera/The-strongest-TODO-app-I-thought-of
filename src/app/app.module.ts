@@ -21,9 +21,7 @@ import { reducers } from './stores';
 @NgModule({
   declarations: [AppComponent],
   // Modalとかはここに追加しないといけない
-  entryComponents: [
-    TaskDetailComponent,
-  ],
+  entryComponents: [TaskDetailComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -40,6 +38,6 @@ import { reducers } from './stores';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     httpInterceptorProviders,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

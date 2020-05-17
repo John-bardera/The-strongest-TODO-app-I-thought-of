@@ -21,10 +21,7 @@ export const initialState = {
 };
 
 export const selectFeature = createFeatureSelector<State>('jwtToken');
-export const selectToken = createSelector(
-  selectFeature,
-  s => s.token
-);
+export const selectToken = createSelector(selectFeature, (s) => s.token);
 
 export function reducer(state: State = initialState, action: All): State {
   switch (action.type) {

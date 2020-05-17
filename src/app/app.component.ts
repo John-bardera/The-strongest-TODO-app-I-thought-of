@@ -9,14 +9,14 @@ import { LocalNotificationService } from '@/services';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private localNotificationService: LocalNotificationService,
+    private localNotificationService: LocalNotificationService
   ) {
     this.initializeApp();
   }

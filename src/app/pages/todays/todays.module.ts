@@ -6,14 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { TodaysPageRoutingModule } from '@/pages/todays/todays-routing.module';
 import { TodaysPage } from '@/pages/todays/todays.page';
 
-
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    TodaysPageRoutingModule,
-  ],
-  declarations: [TodaysPage]
+  imports: [CommonModule, FormsModule, IonicModule, TodaysPageRoutingModule],
+  declarations: [TodaysPage],
 })
 export class TodaysPageModule {}

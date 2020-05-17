@@ -7,12 +7,7 @@ import { RemindersPageRoutingModule } from '@/pages/reminders/reminders-routing.
 import { RemindersPage } from '@/pages/reminders/reminders.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RemindersPageRoutingModule,
-  ],
-  declarations: [RemindersPage]
+  imports: [CommonModule, FormsModule, IonicModule, RemindersPageRoutingModule],
+  declarations: [RemindersPage],
 })
 export class RemindersPageModule {}

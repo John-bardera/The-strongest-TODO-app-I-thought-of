@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['tasks.page.scss'],
 })
 export class TasksPage {
-  constructor() { }
-
+  constructor() {}
 }

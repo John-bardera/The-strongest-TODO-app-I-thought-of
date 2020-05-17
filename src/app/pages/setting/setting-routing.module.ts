@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SettingPage } from '@/pages/setting/setting.page';
 
-
 const routes: Routes = [
   {
     path: '',
