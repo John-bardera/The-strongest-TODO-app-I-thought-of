@@ -6,4 +6,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ng-container *ngIf="tasks$ | async as tasks">
+    <div *ngFor="let task of tasks">
+      {{ task.id }}
+      {{ task.title }}
+    </div>
+  </ng-container>
+</ion-content>
