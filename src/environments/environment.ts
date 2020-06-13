@@ -11,7 +11,7 @@ export const environment: EnvironmentInterface = {
     host: 'hoge',
     port: 8000,
     ssl: true,
-  },
+  }
 };
 export * from './environment.type';
 
