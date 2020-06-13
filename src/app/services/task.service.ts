@@ -19,17 +19,17 @@ export class TaskService {
   }
 
   getTasks(): Observable<Task[]> {
-    return this.userDoc.collection<Task>('tasks').snapshotChanges()
+    return this.userDoc
+      .collection<Task>('tasks')
+      .snapshotChanges()
       .pipe(
         this.mapTask(),
-        tap(tasks => this.store.dispatch(setTasks({ tasks })))
+        tap((tasks) => this.store.dispatch(setTasks({ tasks })))
       );
   }
 
   addTask(task: Task) {
-    return this.userDoc
-      .collection<Task>('tasks')
-      .add(task);
+    return this.userDoc.collection<Task>('tasks').add(task);
   }
 
   // DocumentChangeAction[] -> Task[] with id

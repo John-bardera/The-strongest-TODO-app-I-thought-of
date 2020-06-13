@@ -16,9 +16,9 @@ const initialState: State = {
 };
 
 export const selectFeature = createFeatureSelector<State>('task');
-export const getTasks = createSelector(selectFeature, state => {
+export const getTasks = createSelector(selectFeature, (state) => {
   if (state.taskIds) {
-    return state.taskIds.map(id => state.tasks[id]);
+    return state.taskIds.map((id) => state.tasks[id]);
   } else {
     return [];
   }
@@ -28,8 +28,8 @@ const taskReducer = createReducer(
   initialState,
   on(setTasks, (state, { tasks }) => {
     const newTasks = { ...state.tasks };
-    const taskIds = tasks.map(team => team.id);
-    tasks.forEach(team => {
+    const taskIds = tasks.map((team) => team.id);
+    tasks.forEach((team) => {
       newTasks[team.id] = team;
     });
     return { ...state, tasks: newTasks, taskIds };
@@ -41,7 +41,7 @@ const taskReducer = createReducer(
   }),
   on(deleteTask, (state, { taskId }) => {
     const tasks = { ...state.tasks };
-    const taskIds = (state.taskIds || []).filter(id => id !== taskId);
+    const taskIds = (state.taskIds || []).filter((id) => id !== taskId);
     delete tasks[taskId];
     return { ...state, tasks, taskIds };
   })
