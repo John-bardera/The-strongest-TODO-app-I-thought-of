@@ -3,11 +3,11 @@ export interface Task {
   boardId?: string;
   parentId?: string;
   title: string;
-  period: string;
+  period?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
   // TODO: datetimeにするかどうか
   index: number;
   priority: number;
   isDone: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
+  updatedAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
 }

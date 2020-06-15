@@ -21,16 +21,24 @@ export class TasksPage {
 
   ionViewDidEnter() {
     this.taskService.getTasks().subscribe((tasks) => console.log(tasks));
-  //   this.taskService
-  //     .addTask({
-  //       title: 'hoge',
-  //       period: '2020-11-11',
-  //       index: 1,
-  //       priority: 1,
-  //       isDone: false,
-  //     })
-  //     .then((ref) => {
-  //       console.log(ref);
-  //     });
+  }
+
+  addTask() {
+    this.taskService
+      .addTask({
+        title: 'hoge',
+        period: new Date('2020-11-11'),
+        index: 1,
+        priority: 1,
+        isDone: false,
+      });
+  }
+
+  deleteTask(taskId: string) {
+    this.taskService.deleteTask(taskId);
+  }
+
+  completeTask(taskId: string) {
+    this.taskService.complete(taskId);
   }
 }

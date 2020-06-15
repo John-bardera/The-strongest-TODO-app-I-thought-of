@@ -9,8 +9,12 @@
 <ion-content>
   <ng-container *ngIf="tasks$ | async as tasks">
     <div *ngFor="let task of tasks">
-      {{ task.id }}
       {{ task.title }}
+      {{ task.period }}
+      {{ task.isDone }}
+      <button (click)="deleteTask(task.id)">delete</button>
+      <button (click)="completeTask(task.id)">complete</button>
     </div>
+    <button (click)="addTask()">add</button>
   </ng-container>
 </ion-content>
