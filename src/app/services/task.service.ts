@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  AngularFirestoreDocument,
   DocumentChangeAction,
 } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
@@ -18,38 +19,44 @@ import { setTasks } from '@/stores/task.store';
   providedIn: 'root',
 })
 export class TaskService {
-  private baseDoc: AngularFirestoreCollection<Task>;
+  private userDoc: AngularFirestoreDocument<Task>;
 
   constructor(private store: Store<AppState>, firestore: AngularFirestore) {
-    this.baseDoc = firestore.collection('users').doc('USER_ID_TEMPORARY').collection<Task>('tasks');
+    this.userDoc = firestore.collection('users').doc('USER_ID_TEMPORARY');
   }
 
-  getTasks(): Observable<Task[]> {
-    return this.baseDoc.snapshotChanges().pipe(
-      this.mapTask(),
-      tap((tasks) => this.store.dispatch(setTasks({ tasks })))
-    );
+  getTasks(boardId: string): Observable<Task[]> {
+    return this.getTaskCollection(boardId)
+      .snapshotChanges()
+      .pipe(
+        this.mapTask(),
+        tap((tasks) => this.store.dispatch(setTasks({ tasks })))
+      );
   }
 
-  addTask(task: Task) {
+  addTask(boardId: string, task: Task) {
     task.createdAt = firebase.firestore.FieldValue.serverTimestamp();
     task.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
-    return this.baseDoc.add(task);
+    return this.getTaskCollection(boardId).add(task);
   }
 
-  updateTask(task: Task) {
+  updateTask(boardId: string, task: Task) {
     task.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
-    return this.baseDoc.doc(task.id).update(task);
+    return this.getTaskCollection(boardId).doc(task.id).update(task);
   }
 
-  complete(taskId: string) {
-    return this.baseDoc.doc(taskId).update({ isDone: true });
+  complete(boardId: string, taskId: string) {
+    return this.getTaskCollection(boardId).doc(taskId).update({ isDone: true });
   }
 
-  deleteTask(taskId: string) {
-    return this.baseDoc.doc(taskId).delete();
+  deleteTask(boardId: string, taskId: string) {
+    return this.getTaskCollection(boardId).doc(taskId).delete();
+  }
+
+  private getTaskCollection(boardId: string): AngularFirestoreCollection<Task> {
+    return this.userDoc.collection<Task>('tasks', (ref) => ref.where('boardId', '==', boardId));
   }
 
   // DocumentChangeAction[] -> Task[] with id
@@ -67,8 +74,8 @@ export class TaskService {
 
   private timestampToDate(...columns: string[]) {
     return pipe(
-      map<Task[], Task[]>(tasks =>
-        tasks.map(task => {
+      map<Task[], Task[]>((tasks) =>
+        tasks.map((task) => {
           [...columns, 'createdAt', 'updatedAt'].forEach((column) => {
             if (task[column] instanceof firebase.firestore.Timestamp) {
               task[column] = task[column].toDate();

@@ -7,7 +7,15 @@
 </ion-header>
 
 <ion-content>
+  <ng-container *ngIf="boards$ | async as boards">
+    <h2>Boards</h2>
+    <div *ngFor="let board of boards">
+      {{ board.title }}
+    </div>
+  </ng-container>
+
   <ng-container *ngIf="tasks$ | async as tasks">
+    <h2>Tasks</h2>
     <div *ngFor="let task of tasks">
       {{ task.title }}
       {{ task.period }}
