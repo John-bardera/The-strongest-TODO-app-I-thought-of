@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { Observable, pipe } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import * as firebase from 'firebase/app';
 
+import { actionsToModels } from '@/libs/firestore-pipes';
 import { Board } from '@/models';
 import { AppState } from '@/stores';
 import { setBoards } from '@/stores/board.store';
@@ -22,7 +23,7 @@ export class BoardService {
 
   getBoards(): Observable<Board[]> {
     return this.baseDoc.snapshotChanges().pipe(
-      this.mapBoard(),
+      actionsToModels<Board>(),
       tap((boards) => this.store.dispatch(setBoards({ boards })))
     );
   }
@@ -46,33 +47,5 @@ export class BoardService {
 
   deleteBoard(boardId: string) {
     return this.baseDoc.doc(boardId).delete();
-  }
-
-  // DocumentChangeAction[] -> Board[] with id
-  private mapBoard() {
-    return pipe(
-      map<DocumentChangeAction<Board>[], Board[]>((actions) => {
-        return actions.map((a) => ({
-          id: a.payload.doc.id,
-          ...a.payload.doc.data(),
-        }));
-      }),
-      this.timestampToDate()
-    );
-  }
-
-  private timestampToDate(...columns: string[]) {
-    return pipe(
-      map<Board[], Board[]>((boards) =>
-        boards.map((board) => {
-          [...columns, 'createdAt', 'updatedAt'].forEach((column) => {
-            if (board[column] instanceof firebase.firestore.Timestamp) {
-              board[column] = board[column].toDate();
-            }
-          });
-          return board;
-        })
-      )
-    );
   }
 }

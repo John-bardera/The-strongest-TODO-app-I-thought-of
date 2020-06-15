@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument,
-  DocumentChangeAction,
-} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { Observable, pipe } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import * as firebase from 'firebase/app';
 
+import { actionsToModels } from '@/libs/firestore-pipes';
 import { Task } from '@/models';
 import { AppState } from '@/stores';
 import { setTasks } from '@/stores/task.store';
@@ -29,7 +25,7 @@ export class TaskService {
     return this.getTaskCollection(boardId)
       .snapshotChanges()
       .pipe(
-        this.mapTask(),
+        actionsToModels<Task>(),
         tap((tasks) => this.store.dispatch(setTasks({ tasks })))
       );
   }
@@ -57,33 +53,5 @@ export class TaskService {
 
   private getTaskCollection(boardId: string): AngularFirestoreCollection<Task> {
     return this.userDoc.collection<Task>('tasks', (ref) => ref.where('boardId', '==', boardId));
-  }
-
-  // DocumentChangeAction[] -> Task[] with id
-  private mapTask() {
-    return pipe(
-      map<DocumentChangeAction<Task>[], Task[]>((actions) => {
-        return actions.map((a) => ({
-          id: a.payload.doc.id,
-          ...a.payload.doc.data(),
-        }));
-      }),
-      this.timestampToDate('period')
-    );
-  }
-
-  private timestampToDate(...columns: string[]) {
-    return pipe(
-      map<Task[], Task[]>((tasks) =>
-        tasks.map((task) => {
-          [...columns, 'createdAt', 'updatedAt'].forEach((column) => {
-            if (task[column] instanceof firebase.firestore.Timestamp) {
-              task[column] = task[column].toDate();
-            }
-          });
-          return task;
-        })
-      )
-    );
   }
 }
