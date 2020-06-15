@@ -9,5 +9,5 @@ export interface AppState {
 }
 export const reducers: ActionReducerMap<AppState> = {
   jwtToken: fromJwtToken.reducer,
-  task: fromTask.reducer
+  task: fromTask.reducer,
 };
