@@ -6,6 +6,6 @@ export interface Board {
   index: number;
   priority: number; // priority -> index-> period の順に評価
   isArchived: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
+  updatedAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
 }
