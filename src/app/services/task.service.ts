@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import * as firebase from 'firebase/app';
 
-import { actionsToModels } from '@/libs/firestore-pipes';
+import { mapActionsToModels, mapTimestampToDate } from '@/libs/firestore-operators';
 import { Task } from '@/models';
 import { AppState } from '@/stores';
 import { setTasks } from '@/stores/task.store';
@@ -25,7 +25,8 @@ export class TaskService {
     return this.getTaskCollection(boardId)
       .snapshotChanges()
       .pipe(
-        actionsToModels<Task>(),
+        mapActionsToModels<Task>(),
+        mapTimestampToDate<Task>('period'),
         tap((tasks) => this.store.dispatch(setTasks({ tasks })))
       );
   }

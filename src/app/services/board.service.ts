@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import * as firebase from 'firebase/app';
 
-import { actionsToModels } from '@/libs/firestore-pipes';
+import { mapActionsToModels, mapTimestampToDate } from '@/libs/firestore-operators';
 import { Board } from '@/models';
 import { AppState } from '@/stores';
 import { setBoards } from '@/stores/board.store';
@@ -23,7 +23,8 @@ export class BoardService {
 
   getBoards(): Observable<Board[]> {
     return this.baseDoc.snapshotChanges().pipe(
-      actionsToModels<Board>(),
+      mapActionsToModels<Board>(),
+      mapTimestampToDate<Board>(),
       tap((boards) => this.store.dispatch(setBoards({ boards })))
     );
   }
