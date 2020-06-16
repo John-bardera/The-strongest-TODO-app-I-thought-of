@@ -32,6 +32,9 @@ export class TaskService {
   }
 
   addTask(boardId: string, task: Task) {
+    if (task.period instanceof Date) {
+      task.period = firebase.firestore.Timestamp.fromDate(task.period);
+    }
     task.createdAt = firebase.firestore.FieldValue.serverTimestamp();
     task.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
 
