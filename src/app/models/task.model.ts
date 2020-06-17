@@ -1,13 +1,13 @@
 export interface Task {
-  id: string;
+  id?: string;
+  parentId?: string;
   boardId: string;
-  parentId: string;
   title: string;
-  period: string;
-  // TODO: datetimeにするかどうか
-  index: number;
+  // priority -> index -> period の順に評価
   priority: number;
+  index: number;
   isDone: boolean;
-  createdAt: string;
-  updatedAt: string;
+  period?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
+  createdAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
+  updatedAt?: Date | firebase.firestore.FieldValue | firebase.firestore.Timestamp;
 }

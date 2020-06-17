@@ -10,8 +10,7 @@ import { EnvironmentInterface } from '../environments/environment.type';
 
 @Injectable()
 export class ApiRequestInterceptor implements HttpInterceptor {
-  constructor() // private authSvc: AuthService,
-  {}
+  constructor() {} // private authSvc: AuthService,
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let requestUrl;
